@@ -5,22 +5,26 @@ nav {
  height:5vh;
 }
 
+#result-container a {
+	text-decoration:none;
+}
+
 .infoDiv {
-	background-color:darkblue;
-	margin-top:3vh;
-	font-size:2vw;
+	margin-left:5vw;
+	margin-right:5vw;
 }
 
 #result-container {
 	background-color:darkgreen;
 	position:absolute;
 	top:5vh;
-	height:95vh;
+	min-height:90vh;
 	width:100vw;
 	background-image:url('assets/wikipedia.png');
 	background-position:center;
 	background-size:contain;
 	background-repeat:no-repeat;
+	background-attachment:fixed;
 }
 
 #random-page {

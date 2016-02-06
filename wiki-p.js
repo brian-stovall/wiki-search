@@ -11,15 +11,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	//build a element for every search result
 	populate = function(data) {
+		var linkPrefix = 'https://en.wikipedia.org/?title=';
 		data=data.query.search;
+
 		for (var i = 0; i < data.length; i++) {
-			console.log(data[i]);
+			var link = document.createElement('a');
+			link.href = linkPrefix + data[i].title;
+			link.classList.add('link');
+
 			var elem = document.createElement('div');
-			//elem.src = data[i].title;
 			elem.classList.add('infoDiv');
-			console.log(data[i].title);
-			elem.textContent=data[i].title;
-			resultContainer.appendChild(elem);
+			elem.classList.add('well');
+			var title = document.createElement('h2');
+			title.textContent=data[i].title;
+			var snippet = document.createElement('p');
+			snippet.innerHTML = data[i].snippet;
+			link.appendChild(elem);
+			elem.appendChild(title);
+			elem.appendChild(snippet);
+			resultContainer.appendChild(link);
 		}
 
 	}
