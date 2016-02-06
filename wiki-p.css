@@ -5,6 +5,12 @@ nav {
  height:5vh;
 }
 
+.infoDiv {
+	background-color:darkblue;
+	margin-top:3vh;
+	font-size:2vw;
+}
+
 #result-container {
 	background-color:darkgreen;
 	position:absolute;
