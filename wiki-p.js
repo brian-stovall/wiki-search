@@ -10,8 +10,33 @@ document.addEventListener('DOMContentLoaded', function () {
 	//storage for the last search value - so as not to repeat searches
 	var lastValue;
 
+	//set the focus so the user can just start typing
+	searchTerm.focus();
+
+
+	//send the entered value to make a request when user presses enter
+	//and has requested something different from last time
+	searchTerm.onkeyup = function (event) {
+		if (event.key === 'Enter' && this.value !== lastValue) {
+			//update lastValue on success
+			lastValue = this.value;
+
+			//get our jsonp
+			var jsonp = document.createElement('script');
+			jsonp.id='tempscript';
+			jsonp.src = apiCallPrefix + this.value;
+			document.body.appendChild(jsonp);
+		}
+	};
+
 	//build a element for every search result
 	populate = function(JSON_served) {
+		//make the wikipedia image disappear: too noisy
+		resultContainer.style['background-image']='none';
+
+		//clean out the resultContainer, in case this is not the first search
+		while (resultContainer.firstChild)
+			resultContainer.removeChild(resultContainer.firstChild);
 
 		var linkPrefix = 'https://en.wikipedia.org/?title=';
 		//query.search is the part of the JSON that contains 
@@ -45,21 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 	}
-
-	//send the entered value to make a request when user presses enter
-	//and has requested something different from last time
-	searchTerm.onkeyup = function (event) {
-		if (event.key === 'Enter' && this.value !== lastValue) {
-			//update lastValue on success
-			lastValue = this.value;
-
-			//get our jsonp
-			var jsonp = document.createElement('script');
-			jsonp.id='tempscript';
-			jsonp.src = apiCallPrefix + this.value;
-			document.body.appendChild(jsonp);
-		}
-	};
 
 
 });

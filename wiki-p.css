@@ -6,9 +6,12 @@ nav {
  height:5vh;
 }
 
-#result-container a {
-	text-decoration:none;
+@media (max-width:550px) {
+	.navbar-brand {
+		visibility:hidden;
+	}
 }
+	
 
 .infoDiv {
 	margin-top:5vh;
@@ -18,17 +21,36 @@ nav {
 	padding-bottom:0;
 }
 
+.infoDiv:hover {
+	border-right:solid orange 1vw;
+}
+
+.infoDiv h2, .indoDiv p {
+	margin:0;
+	padding:0;
+}
+
 #result-container {
-	background-color:darkgreen;
+	background-color:#1155cc;
 	position:absolute;
 	top:5vh;
 	min-height:95vh;
 	width:100vw;
+	margin-top:2vh;
 	background-image:url('assets/wikipedia.png');
 	background-position:center;
 	background-size:contain;
 	background-repeat:no-repeat;
 	background-attachment:fixed;
+}
+
+#result-container a {
+	text-decoration:none;
+	color:black;
+}
+
+#result-container a:focus .infoDiv {
+	border-right:solid orange 1vw;
 }
 
 #random-page {
